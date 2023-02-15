@@ -1,0 +1,47 @@
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.text-events{
+    color: #d63384 !important;
+}
+
+#header img {
+    width: 80px;
+  }
+  
+#main .carousel-inner img {
+    max-height: 70vh;
+    object-fit: cover;
+    filter: grayscale(70%);
+  }
+  
+#carousel {
+    position: relative;
+  }
+  
+  .btn-events {
+    background-color: #d63384;
+    color: white;
+  }
+  
+  .btn-events:hover {
+    background-color: #d63384;
+  }
+  
+
+#footer a {
+    color: #d63384;
+  }
+ 
+ .table-active{
+  background-color: #d63384
+ }
+
+ .table-field{
+   color: #fff;
+ }
