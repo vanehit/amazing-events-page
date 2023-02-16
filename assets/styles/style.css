@@ -6,6 +6,16 @@
     box-sizing: border-box;
 }
 
+body{
+ /* position: relative;
+  padding-bottom: 3rem;
+  min-height: 100vh;*/
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .text-events{
     color: #d63384 !important;
 }
@@ -27,6 +37,7 @@
   .btn-events {
     background-color: #d63384;
     color: white;
+    
   }
   
   .btn-events:hover {
@@ -34,9 +45,20 @@
   }
   
 
-#footer a {
-    color: #d63384;
+#footer  {
+  background-color: #d63384;
+    color: #fff;
+    margin-top: auto;
+   /* text-align: left;
+    padding: 1rem 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;*/
   }
+
+  .text-events-footer{
+    color: #d63384 !important;
+}
  
  .table-active{
   background-color: #d63384
@@ -49,3 +71,4 @@
  .title{
    margin-top: 80px;
  }
+
