@@ -72,3 +72,17 @@ body{
    margin-top: 80px;
  }
 
+ .card{
+   margin-left: 2rem;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+ }
+
+.card-img-top{
+  position:relative;
+  width: 15rem;
+  height: 10rem;
+  margin:5px;
+  margin-top:1rem;
+}
