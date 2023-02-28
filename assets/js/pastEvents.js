@@ -185,18 +185,16 @@ function card(events, container) {
     if (currentDate > newCard.date) {
       let div = document.createElement("div")
       div.innerHTML += `
-      <div class="row mt-4">
         <div class="card shadow" style="width: 18rem;">
-        <img src="${newCard.image}" class="card-img-top"
-            alt="${newCard.name}">
-        <div class="card-body">
-            <h5 class="card-title">${newCard.name}</h5>
-            <p class="card-text">${newCard.category}</p>
-            <p>${"price: $" + newCard.price}</p>
-            <a href="#" class="btn btn-primary">Show Details</a>
+          <img src="${newCard.image}" class="card-img-top"
+              alt="${newCard.name}">
+          <div class="card-body">
+              <h5 class="card-title">${newCard.name}</h5>
+              <p class="card-text">${newCard.category}</p>
+              <p>${"price: $" + newCard.price}</p>
+              <a href="#" class="btn btn-primary">Show Details</a>
+          </div>
         </div>
-        </div>
-     </div>
             `
   fragment.appendChild(div);
     }

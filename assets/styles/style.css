@@ -71,10 +71,18 @@ body{
  .title{
    margin-top: 80px;
  }
-
-
+ 
+.container-card{
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+ 
+  
+  
+}
  .card{
    margin-left: 2rem;
+   margin-top: 2rem;
    transition:transform .2s linear;
    display: flex;
    align-items: center;
