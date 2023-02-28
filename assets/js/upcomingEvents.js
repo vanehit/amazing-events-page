@@ -178,8 +178,11 @@ let cardEvents = document.getElementById('card-template')
 
 const fragment = document.createDocumentFragment();
 
+const currentDate = data.currentDate
+
 function card(events, container) {
   for (let newCard of events) {
+    if (currentDate < newCard.date) {
       let div = document.createElement("div")
       div.innerHTML += `
       <div class="row mt-4">
@@ -196,6 +199,7 @@ function card(events, container) {
      </div>
             `
   fragment.appendChild(div);
+    }
   }
   container.appendChild(fragment);
 }

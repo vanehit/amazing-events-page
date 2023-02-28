@@ -72,12 +72,17 @@ body{
    margin-top: 80px;
  }
 
+
  .card{
    margin-left: 2rem;
+   transition:transform .2s linear;
    display: flex;
-   flex-direction: column;
    align-items: center;
  }
+
+.card:hover{
+  transform:scale(1.1,1.1)
+}
 
 .card-img-top{
   position:relative;
