@@ -12,9 +12,11 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous">
 
-    <title>Amazing Events</title>
+    <title>Details</title>
     <!-- Favicon -->
     <link rel="icon" href="../assets/img/favicon-32x32.png">
+     <!-- Animate.CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <!-- Style CSS -->
     <link rel="stylesheet" href="../assets/styles/style.css">
   </head>
@@ -60,45 +62,65 @@
     <!-- /Header -->
 
     <!-- Main -->
-    <main id="main">
-      <!-- Section -->
-      <section id="upcoming-events" class="mt-4">
-        <div class="container">
-          <div class="row">
-            <div class="col text-center text-uppercase">
-              <h2 class="title">Section</h2>
+    <main class="main-container" id="main">
+      <div class="details-wrapper">
+        <div class="detail">
+          <!-- card left -->
+          <div class="product-imgs">
+            <div class="img-display">
+              <div class="img-showcase">
+                <img src="https://i.postimg.cc/ZmD3Xf57/Korean-style.jpg" alt="food image">
+                <img src="../assets/img/korean-food-2.jpeg" alt="food image">
+                <img src="../assets/img/korean-food-3.jpeg" alt="food image">
+                <img src="../assets/img/korean-food-4.jpeg" alt="food image">
+              </div>
+            </div>
+            <div class="img-select">
+              <div class="img-item">
+                <a href="#" data-id="1">
+                  <img src="../assets/img/korean-food-1.jpeg" alt="food image">
+                </a>
+              </div>
+              <div class="img-item">
+                <a href="#" data-id="2">
+                  <img src="../assets/img/korean-food-2.jpeg" alt="food image">
+                </a>
+              </div>
+              <div class="img-item">
+                <a href="#" data-id="3">
+                  <img src="../assets/img/korean-food-3.jpeg" alt="food image">
+                </a>
+              </div>
+              <div class="img-item">
+                <a href="#" data-id="4">
+                  <img src="../assets/img/korean-food-4.jpeg" alt="food image">
+                </a>
+              </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-12 col-md-6 col-lg-6 mb-6">
-              <div class="card text-center">
-                <img class="card-img-top" src="#" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Descrpcion1</h5>
-                  <p class="card-text">Vivamus quam mi, egestas eu metus id,
-                    mollis suscipit ipsum. In vel mollis mauris. Nunc id sem a
-                    lacus tincidunt pretium in in urna. Nam mi nisi, tincidunt
-                    ac tincidunt id, fermentum at metus.</p>
-                </div>
-              </div>
+          <!-- card right -->
+          <div class="product-content">
+            <h2 class="product-title">Korean Style</h2>
+
+            <div class="product-detail">
+              <h2>Food Fair: </h2>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
+                eveniet veniam tempora fuga tenetur placeat sapiente architecto
+                illum soluta consequuntur, aspernatur quidem at sequi ipsa!</p>
             </div>
-            <div class="col-12 col-md-6 col-lg-6 mb-6">
-              <div class="card text-center">
-                <div class="card-body">
-                  <h5 class="card-title">Descripcion2</h5>
-                  <p class="card-text">Vivamus quam mi, egestas eu metus id,
-                    mollis suscipit ipsum. In vel mollis mauris. Nunc id sem a
-                    lacus tincidunt pretium in in urna. Nam mi nisi, tincidunt
-                    ac tincidunt id, fermentum at metus.</p>
-                </div>
-              </div>
+
+            <div class="purchase-info">
+              <input type="number" min="0" value="1">
+              <button type="button" class="btn-cart"> Add to Cart </button>
             </div>
           </div>
         </div>
-      </section>
-      <!-- /Section -->
+      </div>
+
+
     </main>
     <!-- Main -->
+
 
     <!-- Footer -->
     <footer id="footer" class="text-center text-lg-start text-white">

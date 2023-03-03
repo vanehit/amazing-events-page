@@ -192,7 +192,7 @@ function card(events, container) {
               <h5 class="card-title">${newCard.name}</h5>
               <p class="card-text">${newCard.category}</p>
               <p>${"price: $" + newCard.price}</p>
-              <a href="#" class="btn btn-primary">Show Details</a>
+              <a href="../pages/details.html" class="btn btn-events">Show Details</a>
           </div>
         </div>
             `

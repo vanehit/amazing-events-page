@@ -173,23 +173,24 @@ const data = {
 
 
 //PRIMER PASO, INYECTAR LAS CARDS EN EL HTML 
-let cardEvents = document.getElementById('card-template')
+let cardEvents = document.getElementById('card-template') 
 
 const fragment = document.createDocumentFragment();
+
 
 function card(events, container) {
     for (let newCard of events) {
         let div = document.createElement("div")
         div.innerHTML += `
         
-                <div class="card shadow" style="width: 18rem;">
+                <div class="card shadow">
                     <img src="${newCard.image}" class="card-img-top"
                         alt="${newCard.name}">
                     <div class="card-body">
                         <h5 class="card-title">${newCard.name}</h5>
                         <p class="card-text">${newCard.category}</p>
                         <p>${"price: $" + newCard.price}</p>
-                        <a href="#" class="btn btn-primary">Show Details</a>
+                        <a href="../pages/details.html" class="btn btn-events">Show Details</a>
                     </div>
                 </div>
            
@@ -201,3 +202,5 @@ function card(events, container) {
 }
 
 card(data.events, cardEvents)
+
+
