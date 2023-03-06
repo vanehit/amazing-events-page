@@ -175,26 +175,4 @@ const data = {
   }
 
 
-  
-let cards = document.getElementById('card-template') 
 
-const fragment = document.createDocumentFragment();
-
-function card(eventsA, containerCard) {
-  for (let newCard of eventsA) {
-      let div = document.createElement("div")
-      div.className = "card"
-      div.innerHTML += `<img src="${newCard.image}" class="card-img-top"
-      alt="...">
-  <div class="card-body">
-      <h5 class="card-title">${newCard.name}</h5>
-      <p class="card-text">${newCard.category}</p>
-      <p>${"price: $" + newCard.price}</p>
-      <a href="#" class="btn btn-primary">Show Details</a>
-  </div>`
-  fragment.appendChild(div);
-  }
-  container.appendChild(fragment);
-}
-
-buildCard(data.events, eventCard)

@@ -180,26 +180,33 @@ const fragment = document.createDocumentFragment();
 
 const currentDate = data.currentDate
 
-function card(events, container) {
+//crear las cards para inyectar al html
+function createCard(events, container) {
   for (let newCard of events) {
-    if (currentDate > newCard.date) {
       let div = document.createElement("div")
       div.innerHTML += `
-        <div class="card shadow" style="width: 18rem;">
-          <img src="${newCard.image}" class="card-img-top"
-              alt="${newCard.name}">
-          <div class="card-body">
-              <h5 class="card-title">${newCard.name}</h5>
-              <p class="card-text">${newCard.category}</p>
-              <p>${"price: $" + newCard.price}</p>
-              <a href="../pages/details.html" class="btn btn-events">Show Details</a>
-          </div>
-        </div>
-            `
-  fragment.appendChild(div);
-    }
+      
+              <div class="card shadow">
+                  <img src="${newCard.image}" class="card-img-top"
+                      alt="${newCard.name}">
+                  <div class="card-body">
+                      <h5 class="card-title">${newCard.name}</h5>
+                      <p class="card-text">${newCard.date}</p>
+                      <p class="card-text">${newCard.description}</p>
+                      <p class="card-text">${newCard.category}</p>
+                      <p class="card-text">${newCard.place}</p>
+                      <p>${"capacity: $" + newCard.capacity}</p>
+                      <p>${"assistance: $" + newCard.assistance}</p>
+                      <p>${"price: $" + newCard.price}</p>
+                      <a href="../pages/details.html" class="btn btn-events">Show Details</a>
+                  </div>
+              </div>
+         
+
+          `
+      fragment.appendChild(div);
   }
   container.appendChild(fragment);
 }
 
-card(data.events, cardEvents)
+createCard(data.events, cardEvents)

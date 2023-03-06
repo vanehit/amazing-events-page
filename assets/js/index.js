@@ -1,3 +1,9 @@
+//let cardEvents = document.getElementById('card-template')
+
+//const fragment = document.createDocumentFragment();
+
+
+// Array de objetos que contiene la información de las cards
 const data = {
     "currentDate": "2022-01-01",
     "events": [{
@@ -171,14 +177,140 @@ const data = {
     ]
 }
 
-
-//PRIMER PASO, INYECTAR LAS CARDS EN EL HTML 
-let cardEvents = document.getElementById('card-template') 
-
-const fragment = document.createDocumentFragment();
+/*El objeto data representa el conjunto de eventos y tiene las siguientes propiedades*/
 
 
-function card(events, container) {
+const cardContainer = document.getElementById('#card-template'); // Elemento en el que se mostrarán las tarjetas
+const searchInput = document.getElementById('#search-input'); // Elemento input de la barra de búsqueda
+const searchButton = document.getElementById('#search-button'); // Botón para buscar
+const categoryFilters = document.getElementsByName('category'); // Elementos de los filtros por categoría
+
+
+function filterEvents() {
+    const selectedCategories = Array.from(categoryFilters) // Convertimos los elementos HTML en un array
+      .filter((checkbox) => checkbox.checked) // Filtramos los elementos que estén seleccionados
+      .map((checkbox) => checkbox.value); // Obtenemos los valores de las categorías seleccionadas
+  
+    const searchValue = searchInput.value.toLowerCase(); // Convertimos el valor de la búsqueda a minúsculas
+  
+    const filteredEvents = data.events.filter((event) => {
+      // Comprobamos si el evento coincide con las categorías seleccionadas y la búsqueda
+      const matchesCategory = selectedCategories.includes(event.category) || selectedCategories.length === 0;
+      const matchesSearch = event.name.toLowerCase().includes(searchValue);
+  
+      return matchesCategory && matchesSearch;
+    });
+  
+    renderCards(filteredEvents); // Mostramos los eventos filtrados
+  }
+
+  
+  // Listener para los checkboxes de categoría
+categoryFilters.forEach((checkbox) => {
+    checkbox.addEventListener('change', filterEvents);
+  });
+  
+  // Listener para la barra de búsqueda
+  searchInput.addEventListener('input', filterEvents);
+  
+  // Listener para el botón de búsqueda
+  searchButton.addEventListener('click', filterEvents);
+
+const filtersForm = document.querySelector('#filters');
+const cardsSection = document.querySelector('#card-template');
+
+function createCardElement(event) {
+    const cardElement = document.createElement('div');
+    cardElement.classList.add('card', 'my-3');
+  
+    const imageElement = document.createElement('img');
+    imageElement.classList.add('card-img-top');
+    imageElement.src = event.image;
+    imageElement.alt = event.name;
+    cardElement.appendChild(imageElement);
+  
+    const cardBodyElement = document.createElement('div');
+    cardBodyElement.classList.add('card-body');
+  
+    const nameElement = document.createElement('h5');
+    nameElement.classList.add('card-title');
+    nameElement.textContent = event.name;
+    cardBodyElement.appendChild(nameElement);
+  
+    const dateElement = document.createElement('p');
+    dateElement.classList.add('card-text');
+    dateElement.textContent = `Date: ${event.date}`;
+    cardBodyElement.appendChild(dateElement);
+  
+    const descriptionElement = document.createElement('p');
+    descriptionElement.classList.add('card-text');
+    descriptionElement.textContent = event.description;
+    cardBodyElement.appendChild(descriptionElement);
+  
+    const categoryElement = document.createElement('p');
+    categoryElement.classList.add('card-text');
+    categoryElement.textContent = `Category: ${event.category}`;
+    cardBodyElement.appendChild(categoryElement);
+  
+    const placeElement = document.createElement('p');
+    placeElement.classList.add('card-text');
+    placeElement.textContent = `Place: ${event.place}`;
+    cardBodyElement.appendChild(placeElement);
+  
+    const capacityElement = document.createElement('p');
+    capacityElement.classList.add('card-text');
+    capacityElement.textContent = `Capacity: ${event.capacity}`;
+    cardBodyElement.appendChild(capacityElement);
+  
+    const assistanceElement = document.createElement('p');
+    assistanceElement.classList.add('card-text');
+    assistanceElement.textContent = `Assistance: ${event.assistance}`;
+    cardBodyElement.appendChild(assistanceElement);
+  
+    const priceElement = document.createElement('p');
+    priceElement.classList.add('card-text');
+    priceElement.textContent = `Price: ${event.price}`;
+    cardBodyElement.appendChild(priceElement);
+  
+    cardElement.appendChild(cardBodyElement);
+  
+    return cardElement;
+  }
+
+  function renderCards() {
+    // Obtener filtros y texto de búsqueda
+    const filters = Array.from(filtersForm.querySelectorAll('input[type="checkbox"]'));
+    const searchText = document.querySelector('#search-input').value.toLowerCase();
+  
+    // Obtener eventos filtrados
+    const filteredEvents = data.events.filter((event) => {
+      const categoryFilters = filters.filter((filter) => filter.checked).map((filter) => filter.value);
+      const isCategorySelected = categoryFilters.length === 0 || categoryFilters.includes(event.category);
+      const containsSearchText = event.name.toLowerCase().includes(searchText);
+      return isCategorySelected && containsSearchText;
+    });
+  
+    // Limpiar contenedor de eventos
+    eventsContainer.innerHTML = '';
+  
+    // Renderizar eventos filtrados
+    filteredEvents.forEach((event) => {
+      const eventCard = `
+        <div class="card">
+          <img src="${event.image}" alt="${event.name}" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">${event.name}</h5>
+            <p class="card-text">${event.description}</p>
+            <p class="card-text"><small class="text-muted">${event.date}</small></p>
+          </div>
+        </div>
+      `;
+      eventsContainer.innerHTML += eventCard;
+    });
+  }
+
+//crear las cards para inyectar al html
+/*function createCard(events, container) {
     for (let newCard of events) {
         let div = document.createElement("div")
         div.innerHTML += `
@@ -188,7 +320,12 @@ function card(events, container) {
                         alt="${newCard.name}">
                     <div class="card-body">
                         <h5 class="card-title">${newCard.name}</h5>
+                        <p class="card-text">${newCard.date}</p>
+                        <p class="card-text">${newCard.description}</p>
                         <p class="card-text">${newCard.category}</p>
+                        <p class="card-text">${newCard.place}</p>
+                        <p>${"capacity: $" + newCard.capacity}</p>
+                        <p>${"assistance: $" + newCard.assistance}</p>
                         <p>${"price: $" + newCard.price}</p>
                         <a href="../pages/details.html" class="btn btn-events">Show Details</a>
                     </div>
@@ -201,6 +338,5 @@ function card(events, container) {
     container.appendChild(fragment);
 }
 
-card(data.events, cardEvents)
-
+createCard(data.events, cardEvents)*/
 

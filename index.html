@@ -15,8 +15,6 @@
     <title>Amazing Events</title>
     <!-- Favicon -->
     <link rel="icon" href="./assets/img/favicon-32x32.png">
-    <!-- Animate.CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <!-- Style CSS -->
     <link rel="stylesheet" href="./assets/styles/style.css">
   </head>
@@ -68,11 +66,12 @@
         data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active" data-bs-interval="10000">
-            <img src="./assets/img/CINEMA-min.jpg" class="d-block w-100" alt="...">
+            <img src="./assets/img/CINEMA-min.jpg" class="d-block w-100"
+              alt="...">
           </div>
-         
+
           <div class="carousel-item">
-            <img src="./assets/img/Fair Food.jpg" class="d-block w-100"
+            <img src="./assets/img/FairFood.jpg" class="d-block w-100"
               alt="...">
           </div>
           <div class="carousel-item">
@@ -80,7 +79,7 @@
               alt="...">
           </div>
           <div class="flex-caption">
-            <p >HOME</p>
+            <p>HOME</p>
           </div>
         </div>
         <button class="carousel-control-prev" type="button"
@@ -95,62 +94,63 @@
         </button>
       </div>
       <!-- /Carousel -->
-
-      <!-- Check -->
-        <div class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container-fluid">
-            <form class="collapse navbar-collapse">
-              <div class="form-check form-check-inline mx-4">
-                <input type="checkbox" class="form-check-input" name="check1"
-                  id="check1" checked>
-                <label for="check1" class="form-check-label">Category</label>
+      <!-- checboxes -->
+      <div class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <form id="filters" class="collapse navbar-collapse">
+            <div class="form-check form-check-inline mx-4">
+              <input type="checkbox" id="categoryAll" name="category"
+                value="All" class="form-check-input" checked>
+              <label for="categoryAll" class="form-check-label">All</label>
+            </div>
+            <div class="form-check form-check-inline mx-4">
+              <input type="checkbox" id="food-fair" name="category" value="Food
+                Fair" class="form-check-input">
+              <label for="food-fair" class="form-check-label">Food Fair</label>
+            </div>
+            <div class="form-check form-check-inline mx-4">
+              <input type="checkbox" id="museum" name="category" value="Museum"
+                class="form-check-input">
+              <label for="museum">Museum</label>
+            </div>
+            <div class="form-check form-check-inline mx-4">
+              <input type="checkbox" id="costume-party" name="category"
+                value="Costume Party" class="form-check-input">
+              <label for="costume-party">Costume Party</label>
+            </div>
+            <div class="form-check form-check-inline mx-4">
+              <input type="checkbox" id="music-concert" name="category"
+                value="Music Concert" class="form-check-input">
+              <label for="music-concert">Music Concert</label>
+            </div>
+            <div class="form-check form-check-inline mx-4">
+              <input type="checkbox" id="race" name="category" value="Race"
+                class="form-check-input">
+              <label for="race">Race</label>
+            </div>
+          </form>
+          <div class="col">
+            <div class="d-flex" role="search" id="search">
+              <input class="form-control me-2" type="search" aria-label="Search"
+                placeholder="Search events here.." id="search-input">
+              <button class="btn btn-events my-2 my-sm-0" type="button"
+                id="search-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                  fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397
+                    1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0
+                    1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5
+                    5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                  </svg>
+                </button>
               </div>
-
-              <div class="form-check form-check-inline">
-                <input type="checkbox" class="form-check-input" name="check2"
-                  id="check2">
-                <label for="check2" class="form-check-label">Category</label>
-              </div>
-
-              <div class="form-check form-check-inline">
-                <input type="checkbox" class="form-check-input" name="check3"
-                  id="check3">
-                <label for="check3" class="form-check-label">Category</label>
-              </div>
-
-              <div class="form-check form-check-inline">
-                <input type="checkbox" class="form-check-input" name="check4"
-                  id="check4">
-                <label for="check4" class="form-check-label">Category</label>
-              </div>
-
-              <div class="form-check form-check-inline">
-                <input type="checkbox" class="form-check-input" name="check5"
-                  id="check5">
-                <label for="check5" class="form-check-label">Category</label>
-              </div>
-            </form>
-            <div class="col">
-              <div class="d-flex" role="search">
-                <input class="form-control me-2" type="search"
-                  aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0"
-                  type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                    height="16" fill="currentColor" class="bi bi-search"
-                    viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397
-                      1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0
-                      1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5
-                      5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                    </svg></button>
-                </div>
-              </div>
+            </div>
           </div>
         </div>
-        <!-- Check -->
-
+        <!-- /checkboxes -->
         <!-- Cards -->
         <div class="container-card" id="card-template">
+
         </div>
         <!-- /Cards -->
       </main>

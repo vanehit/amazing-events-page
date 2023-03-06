@@ -7,10 +7,6 @@
 }
 
 body{
- /* position: relative;
-  padding-bottom: 3rem;
-  min-height: 100vh;*/
-
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -68,11 +64,6 @@ body{
   background-color: #d63384;
     color: #fff;
     margin-top: auto;
-   /* text-align: left;
-    padding: 1rem 0;
-    position: absolute;
-    bottom: 0;
-    width: 100%;*/
   }
 
   .text-events-footer{
@@ -101,9 +92,12 @@ body{
  .card{
    margin-left: 2rem;
    margin-top: 2rem;
+   margin-bottom: 2rem;
    transition:transform .2s linear;
    display: flex;
    align-items: center;
+   width:16.25rem;
+   height: 38.75rem;
    
  }
 
