@@ -98,6 +98,8 @@ body{
    align-items: center;
    width:16.25rem;
    height: 38.75rem;
+   cursor: pointer;
+   pointer-events: none;
    
  }
 
@@ -113,6 +115,14 @@ body{
   margin-top:1rem;
 }
 
+
+
+label{
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  cursor: pointer;
+}
 
 /*details==========================*/
 

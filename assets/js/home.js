@@ -9,20 +9,10 @@ const searchInput = document.getElementById("search-input");
 const categoryList = document.getElementById("category-list");
 
 
-// obtener la fecha base o de referencia
-const baseDate = new Date(data.currentDate);
-
-// recorrer el array de eventos y obtener la fecha de cada evento
-data.events.forEach(event => {
-  const eventDate = new Date(event.date);
-  // hacer algo con la fecha del evento
-});
-
-
-
 //funcion para crear los checkboxes
 function createCheckbox(array, container){
     // Obtener una lista de categorías únicas de los eventos
+    //con el operador spread (...) y el constructor set creamos un nuevo array. Set es un objeto que nos permite almacenar valores unicos para no repetir los eventos// con el map() iteramos el array y devuelve un valor 
     const categoriesOptions = [...new Set(array.map(event => event.category))];
     
     // Agregar "All" al inicio del array de categorías
@@ -72,7 +62,7 @@ function createEventCards(events, containerCards) {
             <p>Capacity: $${newCard.capacity}</p>
             <p>Assistance: $${newCard.assistance}</p>
             <p>Price: $${newCard.price}</p>
-            <a href="../pages/details.html" class="btn btn-events btn-details">Show Details</a>
+            <a href="./pages/details.html" class="btn btn-events btn-details">Show Details</a>
           </div>
         </div>
       `;
@@ -82,13 +72,17 @@ function createEventCards(events, containerCards) {
     }
   
     // Agrega un controlador de eventos a cada botón "Show Details"
+    //seleccione todos lo elementos del DOM que tenga la clase btn-details
     const detailButtons = containerCards.querySelectorAll('.btn-details');
+    //iteramos sobre cada boton seleccionado
     detailButtons.forEach(button => {
       button.addEventListener('click', () => {
-        // Obtiene el identificador único de la tarjeta correspondiente
+        // Obtiene el elemento único de la tarjeta correspondiente
+        //busca el elemento ascendente más cercano o sea el padre
         const cardElement = button.closest('.card');
+        //obtengo el valor del atributo
         const cardId = cardElement.getAttribute('data-id');
-        console.log(cardId)
+        console.log(cardId);
         
         // Navega a la página de detalles correspondiente
         window.location.href = `../pages/details.html?id=${cardId}`;
@@ -124,6 +118,7 @@ categoryList.addEventListener("change", event => {
 });
 
 searchInput.addEventListener("input", event => {
+  //trim()elimina espacios en blanco principio y al final de una cadena de texto.
   const searchTerm = event.target.value.toLowerCase().trim();
   let filteredEvents = data.events;
   if (searchTerm !== "") {
