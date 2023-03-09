@@ -1,10 +1,12 @@
 import data from './amazing.js';
 
-const container = document.getElementById('event-details');
+
+const container = document.getElementById('btn-details');
 
 // Obtenemos el ID del evento de la URL
 const urlParams = new URLSearchParams(window.location.search);
 const eventId = parseInt(urlParams.get('id'));
+
 
 // Buscamos el evento correspondiente en el archivo data
 const event = data.events.find(event => event.id === eventId);
@@ -13,17 +15,19 @@ if (event) {
   //si el evento existe 
   // Creamos la vista de detalles del evento
   const details = createEventDetails(event);
+  
   // y lo agregamos la vista de detalles del evento al contenedor correspondiente en la página HTML
   container.appendChild(details);
 } else {
   showNotFound(container);
+  
 }
 
 // Función para crear la vista de detalles del evento
 function createEventDetails(event) {
   const detailsContainer = document.createElement('div');
   detailsContainer.classList.add('card', 'shadow');
-  detailsContainer.id = 'event-details';
+  detailsContainer.id = 'btn-details';
 
   const details = `
     <div class="row">
@@ -47,6 +51,7 @@ function createEventDetails(event) {
 
   detailsContainer.innerHTML = details;
   return detailsContainer;
+
 }
 
 // Función para mostrar mensaje "Evento no encontrado" en el contenedor
@@ -55,3 +60,4 @@ function showNotFound(container) {
   message.innerHTML = 'Evento no encontrado';
   container.appendChild(message);
 }
+

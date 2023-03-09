@@ -8,15 +8,22 @@ const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 const searchInput = document.getElementById("search-input");
 const categoryList = document.getElementById("category-list");
 
+const pastEvents = [];
 
 // obtener la fecha base o de referencia
 const baseDate = new Date(data.currentDate);
+
 
 // recorrer el array de eventos y obtener la fecha de cada evento
 data.events.forEach(event => {
   const eventDate = new Date(event.date);
   // hacer algo con la fecha del evento
+  if(eventDate < baseDate){
+   pastEvents.push(event)
+  }
 });
+console.log(pastEvents);
+
 
 
 
@@ -82,7 +89,7 @@ function createEventCards(events, containerCards) {
     }
   
     // Agrega un controlador de eventos a cada botón "Show Details"
-    const detailButtons = containerCards.querySelectorAll('.btn-details');
+    const detailButtons = containerCards.querySelectorAll('.btn-events');
     detailButtons.forEach(button => {
       button.addEventListener('click', () => {
         // Obtiene el identificador único de la tarjeta correspondiente
@@ -135,3 +142,5 @@ searchInput.addEventListener("input", event => {
   }
   createEventCards(filteredEvents, containerCards);
 });
+
+

@@ -1,5 +1,8 @@
+
 //importamos el archivo donde esta el data
 import data from './amazing.js';
+//import { createEventDetails, showNotFound } from './details.js'
+
 
 
 // Obtenemos los elementos del DOM que necesitamos
@@ -12,10 +15,12 @@ const categoryList = document.getElementById("category-list");
 //funcion para crear los checkboxes
 function createCheckbox(array, container){
     // Obtener una lista de categorías únicas de los eventos
-    //con el operador spread (...) y el constructor set creamos un nuevo array. Set es un objeto que nos permite almacenar valores unicos para no repetir los eventos// con el map() iteramos el array y devuelve un valor 
+    //con el operador spread (...)suelta los elementos en donde lo ponemos y el constructor set creamos un nuevo array. Set es un objeto que nos permite almacenar valores unicos para no repetir los eventos// con el map() iteramos el array y devuelve un valor 
     const categoriesOptions = [...new Set(array.map(event => event.category))];
     
+    
     // Agregar "All" al inicio del array de categorías
+    //unshift()inserta un nuevo elemento en el inicio del array
     categoriesOptions.unshift("All");
     
     // Crear checkbox para "All" y agregarlo al contenedor
@@ -28,6 +33,7 @@ function createCheckbox(array, container){
   
     // Crear checkbox para cada categoría y agregarlo al contenedor
     categoriesOptions.forEach(category => {
+     
       const label = document.createElement("label");
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
@@ -47,6 +53,7 @@ createCheckbox(data.events, categoryList)
 
 // Recorremos la lista de eventos y creamos las cards 
 function createEventCards(events, containerCards) {
+ 
     containerCards.innerHTML = "";
     for (let i = 0; i < events.length; i++) {
       const newCard = events[i];
@@ -62,30 +69,36 @@ function createEventCards(events, containerCards) {
             <p>Capacity: $${newCard.capacity}</p>
             <p>Assistance: $${newCard.assistance}</p>
             <p>Price: $${newCard.price}</p>
-            <a href="./pages/details.html" class="btn btn-events btn-details">Show Details</a>
           </div>
+          <a href="./pages/details.html" class="btn btn-events btn-details">Show Details</a>
         </div>
       `;
       const cardElement = document.createElement('div');
       cardElement.innerHTML = card;
       containerCards.appendChild(cardElement);
+     
     }
+
+    
   
     // Agrega un controlador de eventos a cada botón "Show Details"
     //seleccione todos lo elementos del DOM que tenga la clase btn-details
     const detailButtons = containerCards.querySelectorAll('.btn-details');
     //iteramos sobre cada boton seleccionado
     detailButtons.forEach(button => {
+      console.log(detailButtons)
       button.addEventListener('click', () => {
+        
         // Obtiene el elemento único de la tarjeta correspondiente
         //busca el elemento ascendente más cercano o sea el padre
         const cardElement = button.closest('.card');
         //obtengo el valor del atributo
         const cardId = cardElement.getAttribute('data-id');
-        console.log(cardId);
         
         // Navega a la página de detalles correspondiente
         window.location.href = `../pages/details.html?id=${cardId}`;
+        
+        
       });
     });
   }
@@ -104,6 +117,7 @@ checkboxes.forEach(checkbox => {
         filteredEvents = data.events.filter(newCard => newCard.category === category);
       }
       createEventCards(filteredEvents, containerCards);
+      
     });
   });
 
@@ -130,3 +144,4 @@ searchInput.addEventListener("input", event => {
   }
   createEventCards(filteredEvents, containerCards);
 });
+

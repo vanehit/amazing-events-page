@@ -8,15 +8,22 @@ const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 const searchInput = document.getElementById("search-input");
 const categoryList = document.getElementById("category-list");
 
+const upcomingEvents = [];
+
 // obtener la fecha base o de referencia
 const baseDate = new Date(data.currentDate);
+
 
 // recorrer el array de eventos y obtener la fecha de cada evento
 data.events.forEach(event => {
   const eventDate = new Date(event.date);
   // hacer algo con la fecha del evento
+  if(eventDate > baseDate){
+   upcomingEvents.push(event)
+  }
 });
 
+console.log(upcomingEvents);
 
 //funcion para crear los checkboxes
 function createCheckbox(array, container){
@@ -70,7 +77,7 @@ function createEventCards(events, containerCards) {
             <p>Capacity: $${newCard.capacity}</p>
             <p>Assistance: $${newCard.assistance}</p>
             <p>Price: $${newCard.price}</p>
-            <a href="../pages/details.html" class="btn btn-events btn-details">Show Details</a>
+            <a href="../pages/details.html" class="btn btn-events">Show Details</a>
           </div>
         </div>
       `;
@@ -80,13 +87,13 @@ function createEventCards(events, containerCards) {
     }
   
     // Agrega un controlador de eventos a cada botón "Show Details"
-    const detailButtons = containerCards.querySelectorAll('.btn-details');
+    const detailButtons = containerCards.querySelectorAll('.btn-events');
     detailButtons.forEach(button => {
       button.addEventListener('click', () => {
         // Obtiene el identificador único de la tarjeta correspondiente
         const cardElement = button.closest('.card');
         const cardId = cardElement.getAttribute('data-id');
-        console.log(cardId)
+       
         
         // Navega a la página de detalles correspondiente
         window.location.href = `../pages/details.html?id=${cardId}`;
