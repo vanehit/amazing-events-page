@@ -1,15 +1,14 @@
 import data from './amazing.js';
 
 
-const container = document.getElementById('btn-details');
-
+const container = document.getElementById('btn-showDetails');
 // Obtenemos el ID del evento de la URL
 const urlParams = new URLSearchParams(window.location.search);
 const eventId = parseInt(urlParams.get('id'));
 
 
 // Buscamos el evento correspondiente en el archivo data
-const event = data.events.find(event => event.id === eventId);
+const event = data.events.find(event => event._id === eventId);
 
 if (event) {
   //si el evento existe 
@@ -22,12 +21,11 @@ if (event) {
   showNotFound(container);
   
 }
-
 // Función para crear la vista de detalles del evento
 function createEventDetails(event) {
   const detailsContainer = document.createElement('div');
   detailsContainer.classList.add('card', 'shadow');
-  detailsContainer.id = 'btn-details';
+  detailsContainer.id = 'btn-showDetails';
 
   const details = `
     <div class="row">

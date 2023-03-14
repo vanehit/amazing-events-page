@@ -41,6 +41,7 @@ function createCheckbox(array, container){
     allCheckbox.type = "checkbox";
     allCheckbox.name = "category";
     allCheckbox.value = "All";
+    allCheckbox.checked = true;
     container.appendChild(allLabel);
   
     // Crear checkbox para cada categoría y agregarlo al contenedor
