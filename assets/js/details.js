@@ -1,61 +1,38 @@
 import data from './amazing.js';
 
+let cardsContainer = document.getElementById("container-cards");
 
-const container = document.getElementById('btn-showDetails');
-// Obtenemos el ID del evento de la URL
-const urlParams = new URLSearchParams(window.location.search);
-const eventId = parseInt(urlParams.get('id'));
+// Obtenemos el ID del evento de la URL o sea la ruta
 
+const queryString = location.search
+/*obtenemos el parametro */
+const params = new URLSearchParams(queryString)
+/*ID */
+const id = params.get("id")
+const selectedEvent = data.events.find(event => event._id == id)
 
-// Buscamos el evento correspondiente en el archivo data
-const event = data.events.find(event => event._id === eventId);
-
-if (event) {
-  //si el evento existe 
-  // Creamos la vista de detalles del evento
-  const details = createEventDetails(event);
-  
-  // y lo agregamos la vista de detalles del evento al contenedor correspondiente en la página HTML
-  container.appendChild(details);
-} else {
-  showNotFound(container);
-  
-}
-// Función para crear la vista de detalles del evento
-function createEventDetails(event) {
-  const detailsContainer = document.createElement('div');
-  detailsContainer.classList.add('card', 'shadow');
-  detailsContainer.id = 'btn-showDetails';
-
-  const details = `
-    <div class="row">
-      <div class="col-md-4">
-        <img src="${event.image}" class="card-img-top" alt="${event.name}">
-      </div>
-      <div class="col-md-8">
+function createEventsCard(card, container) {
+  container.innerHTML = "";
+  let div = document.createElement("div")
+  div.classList = 'card-details'
+  div.className = "card-details"
+  div.innerHTML += `
+   
+        <img src="${card.image}" class="card-img-top" alt="${card.name}">
         <div class="card-body">
-          <h5 class="card-title" id="event-name">${event.name}</h5>
-          <p class="card-text" id="event-date">${event.date}</p>
-          <p class="card-text" id="event-description">${event.description}</p>
-          <p class="card-text" id="event-category">${event.category}</p>
-          <p class="card-text" id="event-place">${event.place}</p>
-          <p id="event-capacity">${event.capacity}</p>
-          <p id="event-assistance">${event.assistance}</p>
-          <p id="event-price">${event.price}</p>
+          <h5 class="card-title" id="event-name">${card.name}</h5>
+          <p class="card-text" id="event-date">${card.date}</p>
+          <p class="card-text" id="event-description">${card.description}</p>
+          <p class="card-text" id="event-category">${card.category}</p>
+          <p class="card-text" id="event-place">${card.place}</p>
+          <p id="event-capacity">${card.capacity}</p>
+          <p id="event-assistance">${card.assistance}</p>
+          <p id="event-price">${card.price}</p>
         </div>
-      </div>
-    </div>
-  `;
+    `;
 
-  detailsContainer.innerHTML = details;
-  return detailsContainer;
+  container.appendChild(div);
 
 }
 
-// Función para mostrar mensaje "Evento no encontrado" en el contenedor
-function showNotFound(container) {
-  const message = document.createElement('p');
-  message.innerHTML = 'Evento no encontrado';
-  container.appendChild(message);
-}
-
+createEventsCard(selectedEvent, cardsContainer);
