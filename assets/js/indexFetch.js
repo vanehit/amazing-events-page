@@ -1,4 +1,4 @@
-
+//importamos la data
 //import newData from "./eventsData"
 
 let cardsContainer = document.getElementById("container-cards");
@@ -16,18 +16,16 @@ const fragment = document.createDocumentFragment();
 
 const $checkboxes = document.getElementById("checkboxes");
 
-//agregamos la fecha
-let currentDate
 
-//Conectamos la API
+//conctamos la API
+
 async function getNewData() {
     try {
-        let apiUrl = '/assets/js/amazing.json'
+        let apiUrl = 'assets/js/amazing.json'
         let response = await fetch(apiUrl);
         let newData = await response.json();
         console.log(getNewData);
         events = newData.events;
-        currentDate = newData.currentDate;
         categories = createEventsCategories(events);
         createEventsCard(events, cardsContainer);
         createEventsCheckboxes(categories, $checkboxes);
@@ -38,15 +36,17 @@ async function getNewData() {
 }
 getNewData()
 
+//const fragment = document.createDocumentFragment();
+
 /*crea tarjetas de eventos y las inserta en un contenedor en la página */
-function createEventsCard(arrayEvents, container) {
-    container.innerHTML = "";// Borra todo el contenido previo del contenedor
-    for (let newCard of arrayEvents) {//Itera por cada objeto de evento en el array
-      if (currentDate < newCard.date){
-        let div = document.createElement("div")// Crea un nuevo elemento <div> para la tarjeta
-        div.className = "card"// Asigna la clase CSS "card" al elemento <div>
-        div.innerHTML += 
-        `
+function createEventsCard(array, container) {
+    container.innerHTML = ""; // Borra todo el contenido previo del contenedor
+    for (let newCard of array) { //Itera por cada objeto de evento en el array
+        let div = document.createElement("div") // Crea un nuevo elemento <div> para la tarjeta
+        div.className = "card" // Asigna la clase CSS "card" al elemento <div>
+        div.innerHTML +=
+            `
+       
             <img src="${newCard.image}" class="card-img-top"
             alt="${newCard.name}">
             <div class="card-body">
@@ -58,28 +58,27 @@ function createEventsCard(arrayEvents, container) {
                 <p>Capacity: $${newCard.capacity}</p>
                 <p>Assistance: $${newCard.assistance}</p>
                 <p>Price: $${newCard.price}</p>
+                <a href="../pages/details.html?id=${newCard._id}" class="btn btn-events">Show Details</a>
             </div>
-            <a href="../../pages/details.html?id=${newCard._id}" class="btn btn-events">Show Details</a>
+           
         
-      `// Agrega el contenido HTML de la tarjeta al elemento <div>
+      ` // Agrega el contenido HTML de la tarjeta al elemento <div>
         fragment.appendChild(div);
-      }
-
-    container.appendChild(fragment);// Agrega el elemento <div> con la tarjeta al contenedor
-    
     }
+
+    container.appendChild(fragment); // Agrega el elemento <div> con la tarjeta al contenedor
 }
 
-createEventsCard(events, cardsContainer);//"activa" la función para que se creen y se inserten las tarjetas de eventos en la página web
+createEventsCard(events, cardsContainer); //"activa" la función para que se creen y se inserten las tarjetas de eventos en la página web
 
 
 /*creamos una lista de categorías sin repeticiones a partir del array*/
 //definimos la variable para agregar dinamicamente los chekcboxes
 //const $checkboxes = document.getElementById("checkboxes");
 // creamos la funcion que toma un arreglo de eventos como argumento
-const createEventsCategories = (arrayEvents) => {
+const createEventsCategories = (array) => {
     // el método map crea un nuevo arreglo que contenga únicamente las categorías de los eventos
-    let categories = arrayEvents.map(category => category.category)
+    let categories = array.map(category => category.category)
     //con el operador spread (...)suelta los elementos en donde lo ponemos y el constructor set creamos un nuevo array. Set es un objeto que nos permite almacenar valores unicos para no repetir los eventos.
     let categoriesUnrepeat = [...(new Set(categories))]
     //retorna el array con las categorias unicas
@@ -134,16 +133,16 @@ const filterEventsCheckboxes = (array) => {
 //creamos la fn que se encarga de filtrar los eventos cuyos nombres contienen el valor de búsqueda en su nombre (sin importar si están en mayúsculas o minúsculas).
 const $search = document.getElementById("search-input");
 
-const filterEventsSearch = (arrayEvents, value) => {
-    let filteredArray = arrayEvents.filter(event => event.name.toLowerCase().includes(value.toLocaleLowerCase()))
+const filterEventsSearch = (array, value) => {
+    let filteredArray = array.filter(event => event.name.toLowerCase().includes(value.toLocaleLowerCase()))
     return filteredArray
 }
 
 /*creamos la fn que combina los resultados de los dos filtros (por categorías y por término de búsqueda) para obtener un arreglo de eventos que cumplan ambos criterios y lo devuelve como resultado. */
 // se encarga de filtrar los eventos según los criterios seleccionados por el usuario.
-const filterAndPrint = (arrayEvents) => {
+const filterAndPrint = (array) => {
     //aca se actualiza con el resultado de llamar a la función filterSearch para filtrar aún más los eventos según el término de búsqueda ingresado por el usuario.
-    let newEventsArray = filterEventsCheckboxes(arrayEvents)
+    let newEventsArray = filterEventsCheckboxes(array)
     newEventsArray = filterEventsSearch(newEventsArray, $search.value)
     //se devuelve el arreglo de eventos filtrado
     return newEventsArray

@@ -1,13 +1,42 @@
 //importamos la data
-import data from "./amazing.js"
+//import newData from "./eventsData"
 
 let cardsContainer = document.getElementById("container-cards");
 
-let events = data.events;
+//let events = newData.events;
 
-const currentDate = data.currentDate
+
+let container = document.getElementById("cardcontainer");
+
+let categories = [];
+
+let events = [];
 
 const fragment = document.createDocumentFragment();
+
+const $checkboxes = document.getElementById("checkboxes");
+
+//agregamos la fecha
+let currentDate
+//Conectamos la API
+
+async function getNewData() {
+    try {
+        let apiUrl = '/assets/js/amazing.json'
+        let response = await fetch(apiUrl);
+        let newData = await response.json();
+        console.log(getNewData);
+        events = newData.events;
+        currentDate = newData.currentDate;
+        categories = createEventsCategories(events);
+        createEventsCard(events, cardsContainer);
+        createEventsCheckboxes(categories, $checkboxes);
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+getNewData()
 
 /*crea tarjetas de eventos y las inserta en un contenedor en la página */
 function createEventsCard(arrayEvents, container) {
@@ -46,7 +75,7 @@ createEventsCard(events, cardsContainer);//"activa" la función para que se cree
 
 /*creamos una lista de categorías sin repeticiones a partir del array*/
 //definimos la variable para agregar dinamicamente los chekcboxes
-const $checkboxes = document.getElementById("checkboxes");
+//const $checkboxes = document.getElementById("checkboxes");
 // creamos la funcion que toma un arreglo de eventos como argumento
 const createEventsCategories = (arrayEvents) => {
     // el método map crea un nuevo arreglo que contenga únicamente las categorías de los eventos
@@ -58,7 +87,7 @@ const createEventsCategories = (arrayEvents) => {
 }
 
 /*llamamos a la fn con el arreglo de eventos events como argumento y se almacena el resultado en la variable categories. Esto nos da un arreglo con todas las categorías únicas presentes en la lista de eventos.*/
-let categories = createEventsCategories(events);
+//let categories = createEventsCategories(events);
 //tomamos dos argumentos: el arreglo de categorías categories y la referencia al elemento HTML $checkboxes donde se van a crear los check
 const createEventsCheckboxes = (categories, $checkboxes) => {
     //iterar sobre el arreglo de categorías
