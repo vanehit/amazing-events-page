@@ -179,3 +179,5 @@ $search.addEventListener('keyup', () => {
     }
 })
 /*en este paso, se actualiza dinámicamente la lista de eventos en la página web cada vez que el usuario escribe en el campo de búsqueda, filtrando los eventos según las categorías seleccionadas y mostrando solo aquellos eventos que coinciden con los criterios de búsqueda seleccionados por el usuario. */
+
+export { categories, events, createEventsCategories, createEventsCard, createEventsCheckboxes };
