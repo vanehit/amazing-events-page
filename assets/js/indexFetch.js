@@ -5,9 +5,6 @@ let cardsContainer = document.getElementById("container-cards");
 
 //let events = newData.events;
 
-
-let container = document.getElementById("cardcontainer");
-
 let categories = [];
 
 let events = [];
